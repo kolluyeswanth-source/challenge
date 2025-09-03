@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Social Media Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f1f1f1;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: #222;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 10px;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 24px;
+      color: #00bcd4;
+    }
+
+    .nav-item {
+      padding: 12px 20px;
+      margin: 5px 0;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      background-color: #00bcd4;
+      color: #fff;
+    }
+
+    /* Main content */
+    .main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      height: 60px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .navbar h3 {
+      color: #333;
+    }
+
+    .navbar input {
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .content {
+      padding: 20px;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    /* Feed Cards */
+    .feed-card {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    }
+
+    .feed-card h4 {
+      margin-bottom: 8px;
+    }
+
+    .feed-card p {
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      body {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>MySocial</h2>
+    <div class="nav-item active" onclick="switchSection('feed')">Feed</div>
+    <div class="nav-item" onclick="switchSection('messages')">Messages</div>
+    <div class="nav-item" onclick="switchSection('notifications')">Notifications</div>
+    <div class="nav-item" onclick="switchSection('profile')">Profile</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <div class="navbar">
+      <h3>Dashboard</h3>
+      <input type="text" placeholder="Search...">
+    </div>
+    <div class="content">
+      
+      <!-- Feed Section -->
+      <div id="feed" class="section active">
+        <div class="feed-card">
+          <h4>@john_doe</h4>
+          <p>Just posted a new photo from my vacation!</p>
+        </div>
+        <div class="feed-card">
+          <h4>@jane123</h4>
+          <p>Excited to start my new job next week 🎉</p>
+        </div>
+      </div>
+
+      <!-- Messages Section -->
+      <div id="messages" class="section">
+        <div class="feed-card">
+          <h4>Messages</h4>
+          <p>You have a new message from <strong>@alice</strong>.</p>
+        </div>
+      </div>
+
+      <!-- Notifications Section -->
+      <div id="notifications" class="section">
+        <div class="feed-card">
+          <h4>Notifications</h4>
+          <p><strong>@mike</strong> liked your post.</p>
+        </div>
+      </div>
+
+      <!-- Profile Section -->
+      <div id="profile" class="section">
+        <div class="feed-card">
+          <h4>Profile</h4>
+          <p>Name: John Doe</p>
+          <p>Email: john@example.com</p>
+          <p>Followers: 152</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function switchSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      const navItems = document.querySelectorAll('.nav-item');
+      
+      sections.forEach(sec => {
+        sec.classList.remove('active');
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+      });
+
+      document.getElementById(sectionId).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
